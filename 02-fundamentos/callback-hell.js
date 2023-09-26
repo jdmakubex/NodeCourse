@@ -26,7 +26,7 @@ const salarios = [
 
 //Función que busca en el arreglo de empleados.
 const getEmpleado = (id, callback) => {
-    const empleado = empleados.find( e=> e.id === id)
+    const empleado = empleados.find( e => e.id === id)
     if (empleado) {
         callback(null, empleado);
     }else{
@@ -34,6 +34,18 @@ const getEmpleado = (id, callback) => {
     }
     
 }
+
+//Función que busca en el arreglo de salarios
+const getSalario = (id, callback) => {
+    const salario = salarios.find(s => s.id === id )
+    if (salario) {
+        callback(null,salario)
+    }else{
+        callback(`No existe salario para el empleado con ${id}`)
+    }
+}
+
+const id = 1;
 
 getEmpleado(1, (err, empleado) => {
     if(err){
