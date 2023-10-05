@@ -7,17 +7,36 @@ class Busquedas {
     constructor() {
         //TODO: leer DB si existe
     }
+
+    get paramsMapbox(){
+        return {
+            'access_token': 'pk.eyJ1IjoiamRtYWt1YmV4IiwiYSI6ImNsbmRnZXp0OTA0a2gyaXVwa2I2NDMzMTQifQ.pk99Qj6WT9JHBhskPBCNcQ',
+            'country': 'mx',
+            'limit': 5,
+            'language': 'es'
+        }
+
+    }
     async ciudad (lugar = ''){
 
         try {
             //peticion http
-            //console.log('ciudad', lugar)
-
-            /**
+             /**
              * Axios, es una lbrería que se usa para hacer peticiones HTTP, ya que reques ya se está quedando obsoleta
              * En el siguiente ejemplo hacemos una petición get a un endpoint para solicitarle información
              */
-            const resp = await axios.get('https://api.mapbox.com/geocoding/v5/mapbox.places/Oaxaca.json?country=mx&limit=5&language=es&access_token=pk.eyJ1IjoiamRtYWt1YmV4IiwiYSI6ImNsbmRnZXp0OTA0a2gyaXVwa2I2NDMzMTQifQ.pk99Qj6WT9JHBhskPBCNcQ');
+            //Ejemplo de como implementar una petición get de con axios
+            const instance = axios .create({
+                baseURL: `https://api.mapbox.com/geocoding/v5/mapbox.places/${ lugar }.json`,
+                params: this.paramsMapbox
+            });
+
+            const resp = await instance.get();
+
+            //console.log('ciudad', lugar)
+
+           
+            
             console.log(resp.data);
 
             
