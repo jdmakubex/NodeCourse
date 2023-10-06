@@ -80,9 +80,10 @@ const listarLugares = async( lugares = [] ) => {
 
         return {
             value: lugar.id,
-            name:  `${ idx } ${ lugar.desc }`
+            name:  `${ idx } ${ lugar.nombre }`
         }
     });
+
 
     choices.unshift({
         value: '0',

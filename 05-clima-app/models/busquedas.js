@@ -21,7 +21,7 @@ class Busquedas {
 
         try {
             //peticion http
-             /**
+            /**
              * Axios, es una lbrería que se usa para hacer peticiones HTTP, ya que reques ya se está quedando obsoleta
              * En el siguiente ejemplo hacemos una petición get a un endpoint para solicitarle información
              */
@@ -33,15 +33,14 @@ class Busquedas {
 
             const resp = await instance.get();
 
-            //console.log('ciudad', lugar)
+            //console.log(resp.data.features)
 
-           
             
             return resp.data.features.map( lugar =>({
                 id: lugar.id,
                 nombre: lugar.place_name,
                 lng: lugar.center[0],
-                lat: lugar.center[1]
+                lat: lugar.center[1],
             }));
 
             
@@ -49,9 +48,6 @@ class Busquedas {
         } catch (error) {
             //return []; 
         }
-
-       
-        
     }
 
 }

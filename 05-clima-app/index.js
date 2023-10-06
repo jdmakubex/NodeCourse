@@ -25,9 +25,12 @@ const main = async() => {
                 const termino = await leerInput('Ciudad: ');
                 //Buscar los lugares
                 const lugares = await busquedas.ciudad( termino );
+                //console.log(lugares)
                 // Seleccionar el lugar
                 const id = await listarLugares(lugares);
-                console.log({id});
+                //console.log({id});
+
+                const lugarSel = lugares.find( l => l.id === id );
 
                 
 
@@ -38,10 +41,10 @@ const main = async() => {
                 //Mostrar resultados
 
                 console.log('\nInformación de la ciudad\n'.green);
-                console.log('Ciudad: ', );
-                console.log('Lat: ', );
-                console.log('Lng: ', );
-                console.log('Temporatura: ', );
+                console.log('Ciudad: ', lugarSel.nombre);
+                console.log('Lat: ', lugarSel.lat);
+                console.log('Lng: ', lugarSel.lng);
+                console.log('Temperatura: ', );
                 console.log('Mínima: ', );
                 console.log('Máxima', );
 
