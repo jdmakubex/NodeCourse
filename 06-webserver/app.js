@@ -1,9 +1,22 @@
 const express = require('express')
+const hbs = require('hbs');
+
 const app = express()
 const port = 8080;
 
-//TODO: require hbs
+
+//Handlebars
 app.set('view engine', 'hbs');
+hbs.registerPartials( __dirname + '/views/partials');
+
+
+
+
+/**
+ * Para usar handlebars tuvimos que instalar el paquete con: npm install hbs  
+ * ahora lo importamos 
+ */
+
 
 /**
  * Para servir contenido estático se implementan middlewarew's
@@ -15,7 +28,11 @@ app.use( express.static( 'public' ) );
 // });
 
 app.get('/',  (req, res) => {
-  res.render('home');
+  //De esta forma renderizamos el html de una vista (view)
+  res.render('home',{
+        nombre: 'Juan de Dios',
+        titulo: 'Curso de Node',
+  }); 
 });
 
 
@@ -24,11 +41,19 @@ app.get('/hola-mundo',  (req, res) => {
 });
 
 app.get('/generic',  (req, res) => {
-    res.sendFile(__dirname+'/public/generic.html');
+    //res.sendFile(__dirname+'/public/generic.html'); //Así mostramos un archivo HTML
+    res.render('generic',{
+        nombre: 'Juan de Dios',
+        titulo: 'Curso de Node',
+    })
 });
 
 app.get('/elements',  (req, res) => {
-    res.sendFile(__dirname+'/public/elements.html');
+    //res.sendFile(__dirname+'/public/elements.html');
+    res.render('elements',{
+        nombre: 'Juan de Dios',
+        titulo: 'Curso de Node',
+    })
 });
 
 //Uso de comodin | Se requiere usar paths abosulutos, por lo que se le agregar __dirname +
