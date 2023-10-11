@@ -1,4 +1,5 @@
-const express = require('express')
+const express = require('express');
+const cors = require('cors');
 
 class Server {
 
@@ -14,6 +15,8 @@ class Server {
         }
 
         middlewares(){
+            //CORS
+            this.app.use( cors());
             this.app.use( express.static('public'));
         }
 
@@ -49,8 +52,6 @@ class Server {
                 console.log('Servidor corriendo en puerto', this.port );
             });
         }
-
-
 
 }
 
