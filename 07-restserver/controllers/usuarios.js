@@ -95,10 +95,21 @@ const usuariosPatch = (req, res) => {
     });
 }
 
-const usuariosDelete =  (req, res) => {
-    res.json({
-        msg: 'delete API - controlador'
-    });
+const usuariosDelete =  async(req, res) => {
+
+    const { id } = req.params;
+
+     /**
+     * Este tipo de borrado no se recomienda por que se peude peder la integridad referencial
+     */
+    //Borrado físico de la BD
+    //const usuario = await Usuario.findByIdAndDelete( id );
+
+    //Esta es la forma optima de hacer el delete, solo cambiando al usuario de estatus
+    const usuario = await Usuario.findByIdAndUpdate (id, { estado:false } );
+   
+
+    res.json(usuario);
 }
 
 
