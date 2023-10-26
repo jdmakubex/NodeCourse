@@ -95,7 +95,7 @@ const usuariosPatch = (req, res) => {
     });
 }
 
-const usuariosDelete =  async(req, res) => {
+const usuariosDelete =  async(req, res =  response) => {
 
     const { id } = req.params;
 
@@ -109,9 +109,11 @@ const usuariosDelete =  async(req, res) => {
 
     //Esta es la forma optima de hacer el delete, solo cambiando al usuario de estatus
     const usuario = await Usuario.findByIdAndUpdate (id, { estado:false } );
+
+    const usuariAutenticado = req.usuario;
    
     //Para mostrar en formato json los datos, hacemos los siguiente, no olvidar {}, cuando son varios datos
-    res.json( {usuario, uid} );
+    res.json( usuario );
 }
 
 
