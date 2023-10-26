@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
  * Desde el postman en el delete, enviamos en header key: x-tokeb y su valor,
  * por lo que esta vez, ya no recibiremos los datos del body, si no del header, como se muestra en la siguiente funcion
  */
-const validarJWT = (req = request, res = response, next) => {
+const validarJWT = (req= request, res = response, next) => {
 
     const token = req.header('x-token');
 
@@ -16,6 +16,10 @@ const validarJWT = (req = request, res = response, next) => {
     }
 
     try {
+        //Esta función sirve para verificar el JWTconst 
+        const { uid } = jwt.verify(token, process.env.SECRETORPRIVATEKEY);
+        //console.log(payload);
+        req.uid = uid;
         next();
     } catch (error){
         console.log(error);
@@ -24,11 +28,6 @@ const validarJWT = (req = request, res = response, next) => {
         })
 
     }
-
-    
-    
-
-
 
 }
 
